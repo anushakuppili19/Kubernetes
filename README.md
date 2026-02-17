@@ -19,3 +19,27 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
+
+
+
+# Create a new pod using the nginx image.
+kubectl run nginx --image=nginx
+
+# To check how many pods are created
+kubectl get pods
+
+#Delete the webapp Pod.
+kubectl delete pod webapp
+
+
+# We use kubectl run command with --dry-run=client -o yaml option to create a manifest file :-
+
+kubectl run redis --image=redis123 --dry-run=client -o yaml > redis-definition.yaml
+
+
+# After that, using kubectl create -f command to create a resource from the manifest file :-
+
+kubectl create -f redis-definition.yaml 
+
+# Verify the work by running kubectl get command :-
+kubectl get pods
