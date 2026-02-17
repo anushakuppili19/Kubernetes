@@ -1,0 +1,21 @@
+# -------------------------------------------
+# NGINX Pod Definition
+# This manifest creates a simple Pod running
+# an NGINX container exposed on port 80.
+# -------------------------------------------
+
+apiVersion: v1                # The apiVersion field specifies the Kubernetes API version used to create the object
+kind: Pod                    #The kind field indicates the type of Kubernetes object to be created. 
+
+metadata:
+  name: nginx                # Name of the Pod (must be unique in the namespace)
+  labels:                    # Key-value pairs used for selection and organization
+    app: nginx               # Identifies the application this Pod belongs to
+    tier: frontend           # Logical layer (useful in multi-tier architectures)
+
+spec:                        # Desired state of the Pod
+  containers:                # List of containers inside this Pod
+  - name: nginx              # Name of the container (used for logs, exec, debugging)
+    image: nginx:latest     # Container image to pull from Docker Hub (nginx with latest tag)
+    ports:
+    - containerPort: 80     # Port on which the container listens (for internal communication)
